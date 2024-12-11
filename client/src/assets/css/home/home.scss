@@ -1,0 +1,81 @@
+._main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: start;         
+    ._sectionA{
+        width: 50%;
+        ._subSection-AA{
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            padding: 1rem;
+            label{
+                font-style: uppercase;
+                color: var(--primary);
+                font-weight: 600;
+                font-size: 1.5rem;
+            }
+        }
+        ._subSection-AB{
+           padding: 1rem; 
+        }
+    }
+    ._sectionB{
+        background-color: var(--primary);
+        width: 50%;
+        height: 100vh;
+        padding: 0.8rem;
+        ._subSection-BA{
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            ._card{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                max-width: 80%;
+                ._cardIMG{
+                   img{
+                    width: 100%;
+                    border-radius: 10px;
+                   }
+                }
+                ._cardLabel{
+                    padding: 1.5rem;
+                    color: #fff;
+                    h2{
+                        font-size: 1.6rem;
+                    }
+                    p{  
+                        margin-top: 0.5rem;
+                        font-size:0.85rem;
+                    }
+                }
+            }
+        }
+    }
+}
+ 
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    ._main{
+        flex-direction: row;
+        ._sectionA, ._sectionB{
+            width: 50%;
+        }
+    }
+}
+
+
+@media only screen and (max-width: 767px) {
+    ._main{
+        flex-direction: column;
+        ._sectionA, ._sectionB{
+            width: 100%;
+            height: auto;
+        }
+    }
+}

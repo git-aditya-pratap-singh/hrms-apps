@@ -1,0 +1,53 @@
+._tableContainer {
+    overflow-x: scroll; /* Enable horizontal scrollbar */
+    overflow-y: scroll; /* Enable vertical scrollbar */
+    max-width: 100%;
+    max-height: 80%;
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    thead {
+      tr {
+        th {
+          position: sticky;
+          top: 0;
+          z-index: 1;
+          padding: 0.6rem; 
+          background-color: var(--primary);
+          color: #fff;
+          font-size: 0.85rem;
+        }
+      }
+    }
+    tbody {
+      font-size: 0.8rem;
+      tr {
+        &:nth-child(odd) {
+          background-color: #f9f9f9; 
+        }
+        &:nth-child(even) {
+          background-color: #fff; 
+        }
+        td {
+          padding: 0.8rem ;
+          white-space: nowrap;
+          color: var(--paragraph-color);
+          cursor: pointer;
+          ._select{
+            padding: 0.25rem;
+            border-radius: 5px;
+            border: 1px solid var(--primary);
+            font-size: 0.7rem;
+            &:focus{
+              border: 1px solid var(--primary);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+._tableContainer::-webkit-scrollbar {
+  scroll-behavior: auto;
+  }

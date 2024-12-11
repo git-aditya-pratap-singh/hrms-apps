@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root{
+    --primary: #7F00FF;
+    --textColor: #212e3a;
+    --textparagraphColor: #494949;
+    --fontStyle: 'Signika Negative', sans-serif;
+    --boxShadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    --slide-down: slide-down 0.7s cubic-bezier(0.215, 0.610, 0.355, 1);
+  }
+
+  body {
+    overflow-x: hidden;
+    font-size: 16px;
+    font-family: var(--fontStyle);
+  }
+
+  @keyframes slide-down {
+    from {
+      transform: translateY(-50%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }

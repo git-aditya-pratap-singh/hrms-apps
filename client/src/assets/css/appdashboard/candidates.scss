@@ -1,0 +1,74 @@
+
+._candiateContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+    // background-color: red;
+    ._sub_candiateContainerA{
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .childContainerA{
+            
+        }
+        .childContainerB{
+            display: flex;
+            align-items: center;
+            gap:1.5rem;
+            .search-input {
+                max-width: 200px; 
+                padding: 0.65rem;
+                font-size:0.75rem;
+                border: 1px solid #ccc;
+                border-radius: 5px; 
+                outline: none;
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+                &:focus{
+                    border-color: var(--primary); 
+                    box-shadow: 0 0 2px var(--primary);
+                }
+            }
+            button{
+                padding:0.65rem;
+                cursor: pointer;
+                border-radius: 5px;
+                border: none;
+                font-size:0.75rem;
+                color: #fff;
+                background-color: var(--primary);
+                transition: 0.5s all ease-in-out;
+                &:hover{
+                    scale: (0.9);
+                }
+
+            }
+        }
+    }
+    ._sub_candiateContainerB{
+    }
+}
+
+._divForms{
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    position: fixed;
+    background-color: #0707077a;
+    z-index: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+._select{
+    padding: 0.25rem;
+    border-radius: 5px;
+    border: 1px solid var(--primary);
+    font-size: 0.7rem;
+    &:focus{
+      border: 1px solid var(--primary);
+    }
+  }

@@ -1,0 +1,25 @@
+.formsInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap:0.4rem;
+    label{
+        font-size: 1rem;
+        font-weight: 400;
+        color: var(--textColor); 
+    }
+    input{
+        
+        width: 100%;
+        border: 1px solid gray; 
+        font-size: 0.8rem;  
+        border-radius:5px; 
+        padding: 0.7rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        outline: none;
+        &:focus{
+            border: 2px solid var(--primary);  
+            box-shadow: 0 0 2px var(--primary);
+        }
+    }
+}
