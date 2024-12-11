@@ -2,7 +2,10 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import toTitleCase from "../common/titleCase";
+import profileName from "../common/profileName";
 import IconComponent from "../../assets/icons/IconComponent"; 
+import getRandomHexColor from "../common/randomColorGenerate";
+import statusColor from "../common/statusColor";
 import ApplicationApi from "../_api/application/ApplicationApi.service";
 
 import "../../assets/css/components/_table.scss";
@@ -34,12 +37,11 @@ const Table = ({structure, tableData, type}) => {
           </thead>
           <tbody>
             {
-        
               tableData.map((data, index)=>{
                 return(
-                  <tr key={index}>
-                    <td>{index+1}</td>
-                    <td>{data.name}</td>
+                  <tr key={index} style={{color: statusColor(data.status)}}>
+                    { type === 'candidate' ? <td>{index+1}</td> : <td style={{ backgroundColor: getRandomHexColor()}}> {profileName(data.name)}</td>}
+                    <td>{ toTitleCase(data.name) }</td>
                     <td>{data.email}</td>
                     <td>{data.phone}</td>
                     <td>{data.department}</td>
@@ -74,7 +76,7 @@ const Table = ({structure, tableData, type}) => {
                         <>
                         <td>{data.department}</td>
                         <td>{data.DOJ.split('T')[0]}</td>
-                        <td><IconComponent iconType="deleteIcon"/></td>   
+                        <td><IconComponent iconType="dotIcon"/></td>   
                         </>
                       )
                     }                   

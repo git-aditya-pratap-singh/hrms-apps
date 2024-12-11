@@ -6,6 +6,7 @@ import { WiStars } from "react-icons/wi";
 import { MdLogout, MdOutlineFileDownload, MdDelete } from "react-icons/md";
 import { IoMdMailUnread } from "react-icons/io";
 import { RxCrossCircled } from "react-icons/rx";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 const IconComponent = ({ iconType, iconSize=null, iconColor=null, iconStyle=null }) => {
   const icons = {
@@ -19,6 +20,7 @@ const IconComponent = ({ iconType, iconSize=null, iconColor=null, iconStyle=null
     crossIcon: <RxCrossCircled size={iconSize} color={iconColor} className={iconStyle}/>,
     downloadIcon: <MdOutlineFileDownload size={iconSize} color={iconColor} className={iconStyle}/>,
     deleteIcon: <MdDelete size={iconSize} color={iconColor} className={iconStyle}/>,
+    dotIcon: <HiOutlineDotsVertical size={iconSize} color={iconColor} className={iconStyle}/>,
   };
   return icons[iconType] || null;
 };
@@ -35,7 +37,8 @@ IconComponent.propTypes = {
     'bellIcon',
     'crossIcon',
     'downloadIcon',
-    'deleteIcon'
+    'deleteIcon',
+    'dotIcon'
   ]).isRequired,
   iconSize: PropTypes.string,
   iconColor: PropTypes.any,
