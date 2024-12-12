@@ -22,5 +22,14 @@ class ApiRoutesCall {
             return 0;
         }
     }
+
+    AttendancePageApi = async() =>{
+        try{
+            const response = await new ApiService().get('/dashboard/attendance/fetchData');
+            return response.status === true ? response.data : 0;
+        }catch(err){
+            return 0;
+        }
+    }
 }
 export default ApiRoutesCall;

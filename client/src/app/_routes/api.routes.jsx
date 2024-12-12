@@ -55,6 +55,7 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard/attendance",
                 element: <Attendance />,
+                loader: new ApiRoutesCall().AttendancePageApi
             },
             {
                 path: "/dashboard/leaves",
