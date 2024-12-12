@@ -12,8 +12,12 @@ import "../../assets/css/components/_table.scss";
 
 const Table = ({structure, tableData, type}) => {
 
-  const [filterData, setFilterData] = useState(''); 
+  const [activePopupId, setActivePopupId] = useState(null); // State to track which popup is open
   const dispatch = useDispatch();
+
+  const togglePopup = (id) => {
+    setActivePopupId((prevId) => (prevId === id ? null : id)); // Toggle popup visibility
+  };
 
   const deleteData = async(email) => await new ApplicationApi().DeleteCandidates(email);
 
@@ -40,7 +44,12 @@ const Table = ({structure, tableData, type}) => {
               tableData.map((data, index)=>{
                 return(
                   <tr key={index} style={{color: statusColor(data.status)}}>
-                    { type === 'candidate' ? <td>{index+1}</td> : <td style={{ backgroundColor: getRandomHexColor()}}> {profileName(data.name)}</td>}
+                    { type === 'candidate' ? <td>{index+1}</td> : 
+                    
+                    <td><span style={{ padding: '0.6rem', color:'#fff', borderRadius:'50%', backgroundColor: getRandomHexColor()}} >
+                      {profileName(data.name)}</span></td>
+                    
+                    }
                     <td>{ toTitleCase(data.name) }</td>
                     <td>{data.email}</td>
                     <td>{data.phone}</td>
@@ -76,7 +85,14 @@ const Table = ({structure, tableData, type}) => {
                         <>
                         <td>{data.department}</td>
                         <td>{data.DOJ.split('T')[0]}</td>
-                        <td><IconComponent iconType="dotIcon"/></td>   
+                        <td onClick={() => togglePopup(data.id)} ><IconComponent iconType="dotIcon" /></td>
+
+                        <div key={`popup-${index}`}
+                          className={`${activePopupId === data.id ? '_notificationPopup_open' : '_notificationPopup_close'}`}>
+                            <label>Edit</label>
+                            <label>Delete</label>
+                        </div> 
+                         
                         </>
                       )
                     }                   
@@ -94,7 +110,7 @@ const Table = ({structure, tableData, type}) => {
 Table.propTypes = {
   structure: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       name: PropTypes.string.isRequired,
     })
   ).isRequired,
@@ -104,9 +120,9 @@ Table.propTypes = {
       email: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
       department: PropTypes.string.isRequired,
-      status: PropTypes.string.isRequired,
-      experience: PropTypes.string.isRequired,
-      resume: PropTypes.string.isRequired,
+      status: PropTypes.string,
+      experience: PropTypes.number,
+      resume: PropTypes.string,
     })
   ).isRequired,
 };

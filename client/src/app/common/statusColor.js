@@ -1,6 +1,6 @@
 const statusColor = (status) => {
     const colorMapping = {
-      New: 'black',
+      New: 'gray',
       Rejected: '#bf0244',
       Ongoing: '#02a34d',
       Selected: '#5a02ad',

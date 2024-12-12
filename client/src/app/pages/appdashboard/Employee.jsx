@@ -22,11 +22,10 @@ const Employee = ()=>{
     const [filteredEmployee, setFilteredEmployee] = useState(empList);   
 
     const searchInput = async(event) => {
-        const searchValue = event.target.value.toLowerCase(); 
+        const searchValue = event.target.value.toLowerCase();
         const filteredList = empListArray.filter((emp) =>
             emp.name.toLowerCase().includes(searchValue) ||
-            emp.email.toLowerCase().includes(searchValue) ||
-            emp.status.toLowerCase().includes(searchValue)
+            emp.email.toLowerCase().includes(searchValue)
         );
         setFilteredEmployee(filteredList);
     };
