@@ -6,6 +6,7 @@ import profileName from "../common/profileName";
 import IconComponent from "../../assets/icons/IconComponent";
 import getRandomHexColor from "../common/randomColorGenerate";
 import statusColor from "../common/statusColor";
+import {attendanceColor} from "../common/statusColor";
 import ApplicationApi from "../_api/application/ApplicationApi.service";
 
 import "../../assets/css/components/_table.scss";
@@ -19,12 +20,16 @@ const Table = ({ structure, tableData, type }) => {
     await new ApplicationApi().DeleteCandidates(email);
   };
 
-  const handleStatusChange = async (data, status) => {
-    if (status === "Selected") {
+  const handleStatusChange = async (type, data, status) => {
+    if (status === "Selected") 
       await new ApplicationApi().AddEmployee(data, status);
-    } else {
+    
+    if(status !== "Selected" && type == null)
       await new ApplicationApi().EditCandidateStatus(data.email, status);
-    }
+    
+    if(status === "Present" || status === "Absent" || status === "Medical Leave" || status === "Work from Home")
+      await new ApplicationApi().UpdateAttendance(data.email, status);
+    
   };
 
   // Render table rows
@@ -39,7 +44,7 @@ const Table = ({ structure, tableData, type }) => {
         <select
           name="statusLevel"
           value={data.status}
-          onChange={(e) => handleStatusChange(data, e.target.value)}
+          onChange={(e) => handleStatusChange(type=null, data, e.target.value)}
           className="_select"
         >
           <option value="" disabled>
@@ -82,9 +87,48 @@ const Table = ({ structure, tableData, type }) => {
       <td>{data.email}</td>
       <td>{data.phone}</td>
       <td>{data.department}</td>
+      <td>{data.department}</td>
       <td>{data.DOJ.split("T")[0]}</td>
       <td onClick={() => setActivePopup(!activePopup)}>
         <IconComponent iconType="dotIcon" />
+      </td>
+    </tr>
+  );
+
+  const renderAttendanceRow = (data, index) => (
+    <tr key={index} style={{ color: attendanceColor(data.status) }} >
+      <td style={{display: 'flex', gap: '0.5rem'}}>
+        <span className="disc"></span>
+        <span
+          style={{
+            padding: "0.6rem",
+            color: "#fff",
+            borderRadius: "50%",
+            backgroundColor: getRandomHexColor(),
+          }}
+        >
+          {profileName(data.result.name)}
+        </span>
+      </td>
+      <td>{toTitleCase(data.result.name)}</td>
+      <td>{data.result.department}</td>
+      <td>{data.result.department}</td>
+      <td>{data.task}</td>
+      <td>
+        <select
+          name="status"
+          value={data.status}
+          onChange={(e) => handleStatusChange(type="attendance", data, e.target.value)}
+          className="_select"
+        >
+          <option value="" disabled>
+            Select Attendance
+          </option>
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+          <option value="Medical Leave">Medical Leave</option>
+          <option value="Work from Home">Work from Home</option>
+        </select>
       </td>
     </tr>
   );
@@ -102,6 +146,7 @@ const Table = ({ structure, tableData, type }) => {
         <tbody>
           {type === "candidate" && tableData.map(renderCandidateRow)}
           {type === "employee" && tableData.map(renderEmployeeRow)}
+          {type === "attendance" && tableData.map(renderAttendanceRow)}
         </tbody>
       </table>
       {activePopup && (

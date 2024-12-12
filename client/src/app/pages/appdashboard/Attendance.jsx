@@ -23,9 +23,10 @@ const Attendance = ()=>{
     const [filteredAttendance, setFilteredAttendance] = useState(attendanceList);   
 
     const searchInput = async(event) => {
+        console.log("VVV")
         const searchValue = event.target.value.toLowerCase();
         const filteredList = attendanceListArray.filter((item) =>
-            item.name.toLowerCase().includes(searchValue) ||
+            item.result.name.toLowerCase().includes(searchValue) ||
             item.status.toLowerCase().includes(searchValue)
         );
         setFilteredAttendance(filteredList);
@@ -41,7 +42,7 @@ const Attendance = ()=>{
             <div className="_sub_candiateContainerA">
                 <div className="childConatinerA">
                     <select name="statusLevel" className="_select" onChange={searchInput}>
-                                <option value="" >All</option>
+                                <option value="" >Select Attendance</option>
                                 <option value="Present">Present</option>
                                 <option value="Absent">Absent</option>
                                 <option value="Medical Leave">Medical Leave</option>

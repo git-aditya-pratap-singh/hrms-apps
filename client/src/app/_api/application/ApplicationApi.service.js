@@ -46,6 +46,17 @@ class ApplicationApi extends BaseControllerResponse {
         }
     }
 
+    UpdateAttendance = async (email, status) => {
+        const dataEmail = {'email': email, 'status': status}
+        try {
+            const response = await new ApiService().put("/dashboard/attendance/edit", dataEmail);
+            this.handleResponse(response);
+            return response;
+        } catch (err) {
+            return this.handleResponse(err);
+        }
+    }
+
 }
 
 export default ApplicationApi;

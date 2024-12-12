@@ -8,6 +8,17 @@ const statusColor = (status) => {
     };
     return colorMapping[status] || 'gray'; 
   };
+
+  const attendanceColor = (status) => {
+    const colorMaps = {
+      Present: 'green',
+      Absent: '#bf0244',
+      'Medical Leave': '#02a34d',
+      'Work from Home': '#5a02ad',
+    };
+    return colorMaps[status] || 'gray'; 
+  };
   
-  export default statusColor;
+export default statusColor;
+export {attendanceColor}
   
